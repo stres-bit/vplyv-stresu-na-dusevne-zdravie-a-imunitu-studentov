@@ -1,0 +1,3483 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+   <style>
+.menu-toggle {
+    display: none;
+    font-size: 26px;
+    background: none;
+    border: none;
+    color: #ffffff;
+    cursor: pointer;
+    z-index: 1100;
+}
+
+
+
+
+
+/* MOBIL – ZÁKLAD (skryté menu) */
+#nav-menu {
+    list-style: none;
+    display: none;
+    flex-direction: column;
+    gap: 0;
+}
+
+@media (max-width: 900px) {
+
+    .menu-toggle {
+        display: block;
+    }
+
+   #nav-menu {
+    position: fixed;
+    top: 72px;
+    left: 0;
+    right: 0;
+    height: calc(100vh - 72px);
+    background: #020617;
+    flex-direction: column;
+    padding: 16px 0;
+    display: flex;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+    z-index: 1000;
+}
+
+#nav-menu.show {
+    transform: translateX(0);
+}
+
+    .nav ul li {
+        border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+
+}
+/* DESKTOP MENU (nad 901px) */
+/* ================= PREMIUM DESKTOP MENU ================= */
+
+@media (min-width: 901px) {
+
+    .menu-toggle {
+        display: none;
+    }
+
+    .nav {
+        height: 72px;
+    }
+
+    #nav-menu {
+        display: flex !important;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        gap: 36px;
+
+        position: static;
+        height: auto;
+        transform: none !important;
+
+        background: transparent;
+        padding: 0;
+        border: none;
+        box-shadow: none;
+    }
+
+    #nav-menu li {
+        list-style: none;
+    }
+
+    #nav-menu li a {
+        font-size: 15px;
+        font-weight: 600;
+        padding: 8px 0;
+        color: #e5e7eb;
+        white-space: nowrap;
+    }
+}
+
+    #nav-menu li {
+        list-style: none;
+    }
+
+    #nav-menu li a {
+        position: relative;
+        font-size: 15px;
+        font-weight: 600;
+        letter-spacing: 0.5px;
+        padding: 8px 0;
+        color: #e5e7eb;
+        transition: all 0.25s ease;
+    }
+
+    /* Hover underline animation */
+    #nav-menu li a::after {
+        content: "";
+        position: absolute;
+        left: 50%;
+        bottom: -6px;
+        width: 0%;
+        height: 2px;
+        background: linear-gradient(90deg, #2563eb, #38bdf8);
+        transform: translateX(-50%);
+        transition: width 0.3s ease;
+    }
+
+    #nav-menu li a:hover {
+        color: #ffffff;
+    }
+
+    #nav-menu li a:hover::after {
+        width: 70%;
+    }
+
+    /* Active state */
+    #nav-menu li a.active {
+        color: #ffffff;
+    }
+
+    #nav-menu li a.active::after {
+        width: 100%;
+    }
+
+    /* AI BUTTON UPGRADE */
+    .ai-btn {
+        margin-left: 30px;
+        padding: 10px 20px;
+        border-radius: 30px;
+        background: linear-gradient(135deg, #2563eb, #38bdf8);
+        font-weight: 600;
+        font-size: 14px;
+        box-shadow: 0 8px 20px rgba(37,99,235,0.35);
+        transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .ai-btn:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 12px 30px rgba(37,99,235,0.5);
+    }
+
+}
+
+
+    #ai-assistant {
+        left: 24px;
+        right: auto;
+        top: 90px;
+        bottom: auto;
+        width: 320px;
+        height: 420px;
+        border-radius: 14px;
+    }
+
+
+
+
+.nav ul li a {
+    font-size: 17px;      /* väčšie písmo */
+    font-weight: 600;     /* výraznejší a hrubší text */
+    color: #ffffff;       /* jasnejší kontrast */
+    padding: 10px 6px;    /* lepšie centrovanie */
+    display: flex;
+    align-items: center;  /* vertikálne vycentrovanie */
+    justify-content: center; /* horizontálne vycentrovanie */
+    transition: color 0.3s;
+}
+.nav ul {
+    display: flex;
+    align-items: center;
+    gap: 36px;
+}
+/* ===================== EXTRA VISUAL BOOST ===================== */
+
+.section, .section-alt {
+    position: relative;
+}
+
+
+
+.section > *, .section-alt > * {
+    position: relative;
+    z-index: 1;
+}
+
+/* Moderné podčiarknutie nadpisov */
+h2 {
+    position: relative;
+}
+
+h2::after {
+    content: "";
+    width: 60px;
+    height: 4px;
+    background: var(--primary);
+    display: block;
+    border-radius: 4px;
+    margin-top: 12px;
+}
+
+/* Fade-in animácia */
+.fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+.fade-in-visible {
+    opacity: 1;
+    transform: translateY(0);
+    transition: 0.8s ease;
+}
+
+
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+
+/* Shine efekt na tlačidlách */
+.btn-primary {
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-primary::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -150%;
+    width: 80%;
+    height: 100%;
+    background: linear-gradient(
+        120deg,
+        rgba(255,255,255,0.2),
+        rgba(255,255,255,0)
+    );
+    transform: skewX(-20deg);
+}
+
+.btn-primary:hover::after {
+    left: 150%;
+    transition: 0.6s ease;
+}
+
+/* Spoločný kontajner pre obe tlačidlá */
+#floating-buttons {
+    position: fixed;
+    bottom: 26px;
+    right: 26px;
+    display: flex;
+    gap: 14px;         
+    z-index: 99999;
+}
+
+/* Tlačidlo Light/Dark */
+#themeToggle {
+    padding: 12px;
+    border-radius: 50%;
+    background: var(--primary);
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+}
+
+/* Šípka hore */
+#scrollTop {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: var(--primary);
+    color: #fff;
+    border: none;
+    font-size: 22px;
+    cursor: pointer;
+    display: none; 
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+}
+
+
+
+
+</style>
+
+
+
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vplyv stresu na duševné zdravie a imunitu študentov</title>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+
+
+
+    <style>
+        :root {
+            --primary: #2563eb;
+            --secondary: #38bdf8;
+            --dark: #0f172a;
+            --gray: #475569;
+            --light: #f8fafc;
+            --bg: #f1f5f9;
+            --accent: #e0f2fe;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg);
+            color: var(--dark);
+            line-height: 1.7;
+        }
+    html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 80px;
+}
+section {
+    scroll-margin-top: 90px;
+}
+        h1, h2, h3 {
+            font-family: 'Playfair Display', serif;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+/* ===== REAL DARK MODE ===== */
+
+body.dark {
+    background-color: #0b1220;
+    color: #f1f5f9; /* výraznejšie, jasnejšie, viditeľné */
+}
+
+/* Nadpisy v dark mode */
+body.dark h1,
+body.dark h2,
+body.dark h3,
+body.dark h4,
+body.dark h5,
+body.dark h6 {
+    color: #ffffff; /* čistá biela pre perfektný kontrast */
+}
+
+/* Odstavce a bežný text */
+body.dark p,
+body.dark li,
+body.dark span,
+body.dark a {
+    color: #f1f5f9; /* svetlošedá, výborne čitateľná */
+}
+
+
+
+/* Sekcie v dark móde */
+body.dark .section,
+body.dark .section-alt {
+    background-color: #0f172a;
+}
+
+
+        /* ================= HEADER ================= */
+
+header {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 10000;
+
+    background: rgba(15, 23, 42, 0.75);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+
+    transition: all 0.3s ease;
+}
+
+.nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 72px;
+    gap: 40px;
+}
+
+
+.logo {
+    font-size: 20px;
+    font-weight: 700;
+    background: linear-gradient(
+        90deg,
+        #38bdf8,
+        #2563eb
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: 1px;
+}
+
+        
+
+
+
+        .nav ul li a {
+            font-size: 14px;
+            font-weight: 500;
+            color: #e5e7eb;
+            transition: color 0.3s;
+        }
+
+        .nav ul li a:hover {
+            color: #fff;
+        }
+
+      /* ================= HERO – PREMIUM BLUE ================= */
+
+.hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding-top: 72px;
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(
+        135deg,
+        #0f172a 0%,
+        #1e3a8a 40%,
+        #2563eb 100%
+    );
+}
+
+/* Svetelný efekt hore */
+.hero::before {
+    content: "";
+    position: absolute;
+    width: 700px;
+    height: 700px;
+    background: radial-gradient(
+        circle,
+        rgba(56,189,248,0.25),
+        transparent 70%
+    );
+    top: -200px;
+    right: -200px;
+    filter: blur(60px);
+    animation: floatGlow 8s ease-in-out infinite;
+    pointer-events: none;
+}
+
+/* Jemná vlna dole */
+.hero::after {
+    content: "";
+    position: absolute;
+    bottom: -120px;
+    left: -10%;
+    width: 120%;
+    height: 280px;
+    background: radial-gradient(
+        ellipse at center,
+        rgba(255,255,255,0.08),
+        transparent 70%
+    );
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+/* Animácia */
+@keyframes floatGlow {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(20px); }
+    100% { transform: translateY(0px); }
+}
+
+        .hero-content {
+            max-width: 720px;
+            color: #fff;
+        }
+
+.hero h1 {
+    font-size: 60px;
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -1px;
+    margin-bottom: 28px;
+
+    background: linear-gradient(90deg, #ffffff, #93c5fd);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+       .hero p {
+    font-size: 20px;
+    color: #e0f2fe;
+    margin-bottom: 40px;
+    max-width: 620px;
+}
+
+        .hero-highlight {
+            background: rgba(37, 99, 235, 0.15);
+            padding: 14px 18px;
+            border-left: 4px solid var(--secondary);
+            margin-bottom: 32px;
+            font-size: 15px;
+            color: #dbeafe;
+        }
+
+
+        .hero-buttons {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 14px 30px;
+            border-radius: 6px;
+            font-size: 15px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+
+    .btn-primary {
+    background: linear-gradient(135deg, #2563eb, #38bdf8);
+    background-size: 200% 200%;
+    animation: gradientMove 4s ease infinite;
+    color: #fff;
+}
+
+        .btn-primary:hover {
+            background-color: #1d4ed8;
+        }
+
+        .btn-outline {
+            border: 1px solid rgba(255,255,255,0.7);
+            color: #fff;
+        }
+
+        .btn-outline:hover {
+            background-color: rgba(255,255,255,0.1);
+        }
+@keyframes gradientMove {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+        /* ================= SECTION BASE (pokračovanie neskôr) ================= */
+    </style>
+</head>
+
+<body>
+<div id="scrollProgress"></div>
+<div id="floating-buttons">
+    <button id="themeToggle">🌙</button>
+    <button id="scrollTop">⬆</button>
+</div>
+
+<header>
+<div class="container">
+    <nav class="nav">
+    
+
+    <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+
+   <ul id="nav-menu">
+    <li><a href="#uvod" onclick="closeMenu()">Úvod</a></li>
+    <li><a href="#stres" onclick="closeMenu()">Stres</a></li>
+    <li><a href="#dusevne-zdravie" onclick="closeMenu()">Duševné zdravie</a></li>
+    <li><a href="#zivotny-styl" onclick="closeMenu()">Zdravý životný štýl</a></li>
+    <li><a href="#regeneracia" onclick="closeMenu()">Regenerácia</a></li>
+    <li><a href="#pohyb" onclick="closeMenu()">Pohyb</a></li>
+    <li><a href="#prevencia" onclick="closeMenu()">Prevencia</a></li>
+    <li><a href="#mental" onclick="closeMenu()">Záver</a></li>
+    <li><a href="#relax-hra" onclick="closeMenu()">Hra</a></li>
+    <li><a href="#test" onclick="closeMenu()">Test</a></li>
+    <li><a href="#pomoc" onclick="closeMenu()">Pomoc</a></li>
+</ul>
+
+
+
+    <button class="ai-btn" onclick="toggleAI()">AI Asistent</button>
+    </nav>
+</div>
+
+</header>
+<main>
+<div id="ai-assistant">
+    <div class="ai-header">
+        <strong>AI Asistent</strong>
+        <button onclick="toggleAI()">✕</button>
+    </div>
+
+    <div class="ai-messages" id="aiMessages">
+        <div class="ai-choices">
+    <button onclick="askPreset('stres')">Čo je to stres?</button>
+    <button onclick="askPreset('priznaky')">Aké sú príznaky stresu?</button>
+    <button onclick="askPreset('dlhodoby')">Čo spôsobuje dlhodobý stres?</button>
+    <button onclick="askPreset('riesenie')">Ako zvládať stres?</button>
+    <button onclick="askPreset('spanok')">Ako stres ovplyvňuje spánok?</button>
+    <button onclick="askPreset('imunita')">Ako stres vplýva na imunitu?</button>
+    <button onclick="askPreset('strava')">Aká strava pomáha proti stresu?</button>
+    <button onclick="askPreset('studenti')">Prečo sú študenti často v strese?</button>
+    <button onclick="askPreset('prevencia')">Ako predchádzať stresu?</button>
+    <button onclick="askPreset('pomoc')">Kde hľadať odbornú pomoc?</button>
+</div>
+        <div class="ai-message ai-bot">
+            Ahoj 👋 Som AI asistent tejto stránky.
+            Môžem ti vysvetliť stres, duševné zdravie a imunitu. Prosím, pýtaj sa otázky uvedené vyššie.
+        </div>
+    </div>
+
+    <div class="ai-input">
+        <input type="text" id="aiInput" placeholder="Napíš otázku..." />
+        <button onclick="sendAI()">➤</button>
+    </div>
+</div>
+
+<section class="hero" id="uvod">
+    <div class="container hero-grid">
+
+        <!-- LEFT CONTENT -->
+        <div class="hero-content">
+           
+
+
+            <h1>
+                Vplyv stresu<br>
+                na duševné zdravie<br>
+                a imunitu študentov
+            </h1>
+
+            <div class="hero-highlight">
+                Dlhodobý stres ovplyvňuje nielen psychickú pohodu,
+                ale aj schopnosť organizmu brániť sa proti chorobám.
+            </div>
+
+            <p>
+                Táto webová stránka sa zameriava na vedecky podložené informácie
+                o tom, ako akademický tlak, nedostatok spánku a psychické preťaženie
+                ovplyvňujú duševné zdravie a imunitný systém.
+            </p>
+
+            
+                <div class="hero-buttons">
+    <a href="#stres" class="btn btn-primary">Preskúmať tému</a>
+    <a href="#dusevne-zdravie" class="btn btn-outline">Zistiť viac</a>
+
+
+            </div>
+        </div>
+            <!-- RIGHT SIDE VISUAL -->
+        <div class="hero-visual">
+
+            <div class="glass-card">
+                <h3>📊 Fakty o strese</h3>
+                <ul>
+                    <li><strong>70 %</strong> študentov pociťuje pravidelný stres</li>
+                    <li><strong>Kortizol</strong> oslabuje imunitu</li>
+                    <li><strong>Spánok pod 6h</strong> zvyšuje úzkosť</li>
+                </ul>
+            </div>
+
+            <div class="floating-badge badge-1">🧠 Duševné zdravie</div>
+            <div class="floating-badge badge-2">🛡 Imunita</div>
+            <div class="floating-badge badge-3">⚡ Energia</div>
+
+        </div>   <!-- zatvára hero-visual -->
+    </div>       <!-- 🔥 TOTO DOPLŇ – zatvára container hero-grid -->
+</section>
+<style>
+ /* ===== HERO GRID LAYOUT ===== */
+.hero-grid {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    align-items: center;
+    gap: 80px;
+}
+
+/* RIGHT SIDE */
+.hero-visual {
+    position: relative;
+}
+
+/* GLASS CARD */
+.glass-card {
+    background: rgba(255,255,255,0.08);
+    backdrop-filter: blur(14px);
+    padding: 32px;
+    border-radius: 20px;
+    border: 1px solid rgba(255,255,255,0.15);
+    color: #ffffff;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.35);
+}
+
+.glass-card ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.glass-card li {
+    margin-bottom: 10px;
+    font-size: 15px;
+    color: #e0f2fe;
+}
+
+/* FLOATING BADGES */
+.floating-badge {
+    position: absolute;
+    background: rgba(255,255,255,0.12);
+    backdrop-filter: blur(10px);
+    padding: 10px 16px;
+    border-radius: 30px;
+    font-size: 13px;
+    color: #ffffff;
+    animation: float 6s ease-in-out infinite;
+}
+
+.badge-1 { top: -20px; right: 10px; }
+.badge-2 { bottom: -20px; left: 0; }
+.badge-3 { bottom: 40%; right: -40px; }
+
+@keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-12px); }
+    100% { transform: translateY(0px); }
+}
+
+@media (max-width: 900px) {
+    .hero-grid {
+        grid-template-columns: 1fr;
+        gap: 60px;
+    }
+
+    .badge-1,
+    .badge-2,
+    .badge-3 {
+        position: static;
+        display: inline-block;
+        margin: 8px;
+    }
+}
+  
+  /* ================= STRESS SECTION ================= */
+
+    .section {
+        padding: 96px 0;
+        background-color: var(--bg);
+    }
+
+    .section-alt {
+        background-color: #ffffff;
+    }
+
+    .section-header {
+        max-width: 720px;
+        margin-bottom: 64px;
+    }
+
+    .section-header h2 {
+        font-size: 40px;
+        margin-bottom: 16px;
+    }
+
+    .section-header p {
+        font-size: 18px;
+        color: var(--gray);
+    }
+
+    .stress-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 32px;
+    }
+
+    .stress-card {
+        background: #ffffff;
+        padding: 32px 28px;
+        border-radius: 12px;
+        box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .stress-card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 20px 40px rgba(15, 23, 42, 0.12);
+    }
+
+    .stress-icon {
+        width: 52px;
+        height: 52px;
+        background-color: var(--accent);
+        color: var(--primary);
+        font-size: 26px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 12px;
+        margin-bottom: 20px;
+    }
+
+    .stress-card h3 {
+        font-size: 20px;
+        margin-bottom: 12px;
+    }
+
+    .stress-card p {
+        font-size: 15px;
+        color: var(--gray);
+        line-height: 1.6;
+    }
+</style>
+<section class="section" id="stres">
+<div class="bg-word">STRES</div>
+<div class="container">
+
+    <!-- ĽAVÁ STRANA – TEXT -->
+    <div>
+
+        <div class="section-header">
+            <h2>Čo je stres a prečo vzniká u študentov?</h2>
+            <p>
+                Stres je prirodzená reakcia organizmu na záťažové situácie.
+                Ak však pretrváva dlhodobo, môže narušiť psychickú rovnováhu aj imunitný systém študentov.
+            </p>
+        </div>
+
+        <div class="stress-grid">
+
+            <div class="stress-card fade-in">
+                <div class="stress-icon">📚</div>
+                <h3>Akademický tlak</h3>
+                <p>Neustále skúšky, testy, termíny a vysoké očakávania...</p>
+            </div>
+
+            <div class="stress-card fade-in">
+                <div class="stress-icon">⏰</div>
+                <h3>Nedostatok času</h3>
+                <p>Pocit nedostatku času zvyšuje hladinu kortizolu a adrenalínu...</p>
+            </div>
+
+            <div class="stress-card fade-in">
+                <div class="stress-icon">😴</div>
+                <h3>Nedostatok spánku</h3>
+                <p>Nepravidelný režim a nočné učenie narúšajú regeneráciu mozgu a zvyšujú stresové hormóny...</p>
+            </div>
+
+            <div class="stress-card fade-in">
+                <div class="stress-icon">🧠</div>
+                <h3>Psychická záťaž</h3>
+                <p>Obavy z budúcnosti, porovnávanie sa s ostatnými...</p>
+            </div>
+
+        </div>
+    </div>
+
+
+
+
+</div>
+
+</section>
+<style>
+/* ================= MENTAL HEALTH SECTION ================= */
+
+.mental-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+    gap: 80px; /* jasná medzera medzi textom a timeline */
+    align-items: flex-start;
+}
+
+.mental-text {
+    padding-right: 24px; /* ochrana proti pretečeniu textu */
+}
+
+.mental-text h2 {
+    font-size: 40px;
+    margin-bottom: 20px;
+}
+
+.mental-text p {
+    font-size: 17px;
+    color: var(--gray);
+    margin-bottom: 24px;
+    line-height: 1.75;
+}
+
+/* ===== TIMELINE ===== */
+
+.timeline {
+    position: relative;
+    padding-left: 58px;              /* priestor medzi osou a textom */
+    border-left: 3px solid var(--primary);
+}
+
+.timeline-item {
+    margin-bottom: 40px;
+    position: relative;
+}
+
+.timeline-item:last-child {
+    margin-bottom: 0;
+}
+
+.timeline-dot {
+    position: absolute;
+    left: -25px;
+    top: 6px;
+    width: 18px;
+    height: 18px;
+    background-color: var(--primary);
+    border-radius: 50%;
+}
+
+.timeline-item h3 {
+    font-size: 18px;
+    margin-bottom: 8px;
+}
+
+.timeline-item p {
+    font-size: 15px;
+    color: var(--gray);
+    line-height: 1.65;
+    max-width: 420px; /* zabráni rozliezaniu textu */
+}
+
+/* ===== RESPONSIVE ===== */
+
+@media (max-width: 900px) {
+    .mental-grid {
+        grid-template-columns: 1fr;
+        gap: 48px;
+    }
+
+    .mental-text {
+        padding-right: 0;
+    }
+
+    .timeline {
+        padding-left: 36px;
+    }
+}
+
+</style>
+<section class="section" id="dusevne-zdravie">
+    <div class="container">
+
+        <div class="mental-grid">
+
+            <div class="mental-text">
+                <h2>Ako stres ovplyvňuje duševné zdravie študentov?</h2>
+                <p>
+                    Dlhodobý alebo intenzívny stres má zásadný vplyv na fungovanie
+                    centrálneho nervového systému. U študentov môže viesť
+                    k postupnému zhoršovaniu psychickej pohody, koncentrácie
+                    a celkovej kvality života.
+                </p>
+                <p>
+                    Ak stres pretrváva bez dostatočnej regenerácie, môže sa
+                    prejaviť nielen emocionálne, ale aj behaviorálne
+                    a kognitívne.
+                </p>
+            </div>
+
+            <div class="timeline">
+
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <h3>Zvýšená úzkosť</h3>
+                    <p>
+                        Neustály tlak a obavy z výkonu vedú k pocitom napätia,
+                        nervozity a strachu, ktoré môžu narúšať bežné fungovanie.
+                    </p>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <h3>Poruchy koncentrácie</h3>
+                    <p>
+                        Stres znižuje schopnosť sústredenia, pamäť
+                        a efektívne spracovanie informácií.
+                    </p>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <h3>Emočné vyčerpanie</h3>
+                    <p>
+                        Dlhodobé preťaženie môže viesť k apatii,
+                        strate motivácie a pocitom beznádeje.
+                    </p>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <h3>Riziko depresie a vyhorenia</h3>
+                    <p>
+                        Ak stres pretrváva dlhé obdobie, zvyšuje sa riziko
+                        rozvoja depresívnych stavov a syndrómu vyhorenia.
+                    </p>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+</section>
+<style>
+    /* ================= HEALTHY LIFESTYLE – PREMIUM ================= */
+
+/* ================= PREMIUM LIFESTYLE REDESIGN ================= */
+
+.lifestyle-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: stretch;
+    margin-top: 60px;
+}
+
+.lifestyle-text {
+    padding: 40px;
+    background: linear-gradient(
+        135deg,
+        rgba(37,99,235,0.05),
+        rgba(56,189,248,0.05)
+    );
+    border-radius: 24px;
+    box-shadow: 0 20px 60px rgba(15,23,42,0.08);
+}
+
+.lifestyle-text h2 {
+    font-size: 40px;
+    margin-bottom: 20px;
+}
+
+.lifestyle-text p {
+    font-size: 16px;
+    line-height: 1.8;
+}
+
+.meal-card {
+    background: #ffffff;
+    padding: 40px;
+    border-radius: 24px;
+    box-shadow: 0 25px 70px rgba(15,23,42,0.12);
+    border: 1px solid rgba(0,0,0,0.04);
+}
+
+.meal {
+    padding: 16px 0;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.meal:last-child {
+    border-bottom: none;
+}
+
+.meal strong {
+    font-weight: 600;
+    color: #0f172a;
+}
+
+.meal span {
+    color: #475569;
+}
+
+/* MOBILE */
+@media (max-width: 900px) {
+    .lifestyle-grid {
+        grid-template-columns: 1fr;
+        gap: 50px;
+    }
+
+    .lifestyle-text,
+    .meal-card {
+        padding: 28px;
+    }
+}
+
+/* LEFT TEXT */
+.lifestyle-text h2 {
+    font-size: 42px;
+    margin-bottom: 18px;
+}
+
+.lifestyle-text p {
+    font-size: 17px;
+    color: var(--gray);
+    margin-bottom: 22px;
+    line-height: 1.8;
+}
+
+/* BENEFITS */
+.benefits-list {
+    margin-top: 36px;
+    list-style: none;
+    display: grid;
+    gap: 18px;
+    padding-left: 0;
+}
+
+.benefits-list li {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    background: linear-gradient(
+        135deg,
+        rgba(37,99,235,0.08),
+        rgba(56,189,248,0.08)
+    );
+    padding: 16px 20px;
+    border-radius: 14px;
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--dark);
+}
+
+.benefit-icon {
+    width: 34px;
+    height: 34px;
+    background: var(--primary);
+    color: #fff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    flex-shrink: 0;
+}
+
+/* RIGHT CARD */
+.meal-card {
+    background: #ffffff;
+    padding: 36px 34px;
+    border-radius: 20px;
+    box-shadow: 0 20px 50px rgba(15,23,42,0.12);
+    position: relative;
+    overflow: hidden;
+}
+
+.meal-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        to bottom right,
+        rgba(37,99,235,0.06),
+        transparent
+    );
+    pointer-events: none;
+}
+
+.meal-card h3 {
+    font-size: 24px;
+    margin-bottom: 26px;
+    position: relative;
+}
+
+/* MEAL ROW */
+.meal {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 14px;
+    padding: 14px 0;
+    border-bottom: 1px solid #e5e7eb;
+    font-size: 15px;
+}
+
+.meal:last-child {
+    border-bottom: none;
+}
+
+.meal strong {
+    color: var(--dark);
+    white-space: nowrap;
+}
+
+.meal span {
+    color: var(--gray);
+}
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+    .lifestyle-grid {
+        grid-template-columns: 1fr;
+        gap: 56px;
+    }
+}
+
+</style>
+<section class="section section-alt" id="zivotny-styl">
+    <div class="container">
+       <div class="bg-word">BALANCE</div>
+       <div class="lifestyle-grid">
+
+        <!-- ĽAVÁ STRANA – TEXT -->
+        <div class="lifestyle-text fade-in">
+            <h2>Zdravý životný štýl ako ochrana pred stresom</h2>
+
+            <p>
+                Zdravý životný štýl zohráva kľúčovú úlohu pri zvládaní stresu
+                a podpore duševného aj fyzického zdravia študentov.
+                Správna výživa, pravidelný režim a dostatočná hydratácia
+                pomáhajú stabilizovať hormonálnu rovnováhu a zvyšujú
+                odolnosť organizmu voči záťaži.
+            </p>
+
+            <p>
+                Nevhodná strava, vynechávanie jedál a nadmerná konzumácia
+                cukrov či kofeínu môžu stres ešte zhoršovať a negatívne
+                ovplyvňovať imunitný systém.
+            </p>
+
+            <ul class="benefits-list">
+                <li><div class="benefit-icon">✓</div> stabilnejšia hladina energie počas dňa</li>
+                <li><div class="benefit-icon">✓</div> lepšia koncentrácia a pamäť</li>
+                <li><div class="benefit-icon">✓</div> posilnenie imunitného systému</li>
+                <li><div class="benefit-icon">✓</div> zníženie únavy a podráždenosti</li>
+            </ul>
+        </div>
+
+        <!-- STRED – JEDÁLNIČEK -->
+        <div class="meal-card fade-in">
+            <h3>Ukážkový denný jedálniček študenta</h3>
+
+            <div class="meal"><strong>Raňajky:</strong><span>ovsené vločky, jogurt, ovocie</span></div>
+            <div class="meal"><strong>Dopoludňajšia desiata:</strong><span>orechy, jablko</span></div>
+            <div class="meal"><strong>Obed:</strong><span>kuracie mäso, ryža, zelenina</span></div>
+            <div class="meal"><strong>Olovrant:</strong><span>tvaroh alebo smoothie</span></div>
+            <div class="meal"><strong>Večera:</strong><span>celozrnné pečivo, zelenina, bielkoviny</span></div>
+            <div class="meal"><strong>Hydratácia:</strong><span>pite dostatok vody na podporu kognitívnych funkcií</span></div>
+            <div class="meal"><strong>Obmedzte:</strong><span>rýchle cukry a kofeín, ktoré spôsobujú výkyvy nálady</span></div>
+            <div class="meal"><strong>Doplnky (voliteľné):</strong><span>bylinky ako ashwagandha alebo medovka pre lepšiu odolnosť voči stresu</span></div>
+        </div>
+
+       
+</div> <!-- zatvára lifestyle-grid -->
+    </div>
+</section>
+
+
+<style>
+    /* ================= SLEEP & MOVEMENT SECTION ================= */
+
+    .regeneration-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 32px;
+        margin-top: 48px;
+    }
+
+    .regeneration-card {
+        background: #ffffff;
+        padding: 36px 30px;
+        border-radius: 14px;
+        box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+        transition: transform 0.3s ease;
+    }
+
+    .regeneration-card:hover {
+        transform: translateY(-6px);
+    }
+
+    .regeneration-icon {
+        width: 56px;
+        height: 56px;
+        background-color: var(--accent);
+        color: var(--primary);
+        border-radius: 14px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 26px;
+        margin-bottom: 20px;
+    }
+
+    .regeneration-card h3 {
+        font-size: 22px;
+        margin-bottom: 14px;
+    }
+
+    .regeneration-card p {
+        font-size: 15px;
+        color: var(--gray);
+        line-height: 1.6;
+    }
+</style>
+<section class="section" id="regeneracia">
+    <div class="container">
+
+        <!-- ĽAVÁ STRANA – TEXT + KARTY -->
+        <div>
+
+            <div class="section-header">
+                <h2>Regenerácia, spánok a psychohygiena</h2>
+                <p>
+                    Pravidelný spánok, fyzická aktivita a dostatočná regenerácia
+                    sú nevyhnutné pre udržiavanie duševnej rovnováhy a silného
+                    imunitného systému. U študentov bývajú tieto oblasti
+                    často zanedbávané.
+                </p>
+            </div>
+
+            <div class="regeneration-grid">
+
+                <div class="regeneration-card">
+                    <div class="regeneration-icon">🌙</div>
+                    <h3>Kvalitný spánok</h3>
+                    <p>
+                        Nedostatok spánku zvyšuje hladinu stresových hormónov,
+                        oslabuje koncentráciu a znižuje schopnosť organizmu
+                        regenerovať sa. Odporúča sa 7–9 hodín spánku denne.
+                    </p>
+                </div>
+
+                <div class="regeneration-card">
+                    <div class="regeneration-icon">🏃‍♂️</div>
+                    <h3>Pravidelný pohyb</h3>
+                    <p>
+                        Fyzická aktivita podporuje tvorbu endorfínov,
+                        znižuje napätie a zlepšuje náladu.
+                    </p>
+                </div>
+
+                <div class="regeneration-card">
+                    <div class="regeneration-icon">🧘</div>
+                    <h3>Psychická regenerácia</h3>
+                    <p>
+                        Relaxačné techniky ako dychové cvičenia,
+                        meditácia alebo krátke prestávky počas učenia.
+                    </p>
+                </div>
+
+            </div>
+        </div>
+
+       
+
+    </div>
+</section>
+
+
+ <style>
+/* ================= MOVEMENT & TRAINING PLAN ================= */
+
+.training-wrapper {
+    max-width: 1100px;
+}
+
+.training-wrapper h2 {
+    font-size: 42px;
+    margin-bottom: 24px;
+}
+
+.training-wrapper p {
+    font-size: 17px;
+    color: var(--gray);
+    margin-bottom: 28px;
+    line-height: 1.8;
+}
+
+.training-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 28px;
+    margin-top: 40px;
+}
+
+.training-day {
+    background: #ffffff;
+    padding: 28px 26px;
+    border-radius: 14px;
+    box-shadow: 0 10px 30px rgba(15,23,42,0.08);
+}
+
+.training-day h3 {
+    font-size: 20px;
+    margin-bottom: 14px;
+    color: var(--dark);
+}
+
+.training-day ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.training-day li {
+    font-size: 15px;
+    color: var(--gray);
+    margin-bottom: 10px;
+    line-height: 1.6;
+}
+
+.training-tip {
+    margin-top: 56px;
+    background: var(--accent);
+    padding: 32px 36px;
+    border-radius: 14px;
+}
+
+.training-tip p {
+    font-size: 17px;
+    color: var(--dark);
+    line-height: 1.8;
+}
+</style>
+<section class="section" id="pohyb">
+    <div class="container">
+        <div class="training-wrapper">
+
+            <h2>Pohyb a fyzická aktivita ako nástroj proti stresu</h2>
+
+            <p>
+                Pravidelný pohyb patrí medzi najúčinnejšie a vedecky
+                overené spôsoby znižovania stresu. Fyzická aktivita
+                podporuje uvoľňovanie endorfínov, zlepšuje náladu,
+                znižuje napätie a zároveň posilňuje imunitný systém.
+            </p>
+
+            <p>
+                Nasledujúci tréningový plán je navrhnutý špeciálne pre
+                študentov – je časovo nenáročný, flexibilný a zameraný
+                na rovnováhu medzi výkonom, regeneráciou a psychickou pohodou.
+            </p>
+
+            <div class="training-grid">
+
+                <div class="training-day">
+                    <h3>Pondelok – ľahký pohyb</h3>
+                    <ul>
+                        <li>• 30 minút svižná chôdza</li>
+                        <li>• ľahký strečing celého tela</li>
+                        <li>• uvoľňovacie dychové cvičenia</li>
+                    </ul>
+                </div>
+
+                <div class="training-day">
+                    <h3>Utorok – posilňovanie</h3>
+                    <ul>
+                        <li>• drepy, kliky, plank (20–30 min)</li>
+                        <li>• cvičenie s vlastnou váhou</li>
+                        <li>• zameranie na správnu techniku</li>
+                    </ul>
+                </div>
+
+                <div class="training-day">
+                    <h3>Streda – aktívna regenerácia</h3>
+                    <ul>
+                        <li>• jóga alebo pilates</li>
+                        <li>• ľahký strečing</li>
+                        <li>• zníženie svalového napätia</li>
+                    </ul>
+                </div>
+
+                <div class="training-day">
+                    <h3>Štvrtok – kardio</h3>
+                    <ul>
+                        <li>• beh, bicykel alebo plávanie</li>
+                        <li>• 20–40 minút miernej intenzity</li>
+                        <li>• zlepšenie kondície a imunity</li>
+                    </ul>
+                </div>
+
+                <div class="training-day">
+                    <h3>Piatok – silovo-funkčný tréning</h3>
+                    <ul>
+                        <li>• kombinácia sily a stability</li>
+                        <li>• core cvičenia</li>
+                        <li>• krátky, ale efektívny tréning</li>
+                    </ul>
+                </div>
+
+                <div class="training-day">
+                    <h3>Víkend – voľný pohyb</h3>
+                    <ul>
+                        <li>• prechádzky v prírode</li>
+                        <li>• šport s priateľmi</li>
+                        <li>• radosť z pohybu bez tlaku</li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <div class="training-tip">
+                <p>
+                    <strong>Tip:</strong> Aj krátky, ale pravidelný pohyb má
+                    väčší pozitívny vplyv než nárazové intenzívne tréningy.
+                    Dôležitá je konzistentnosť, počúvanie vlastného tela
+                    a radosť z pohybu.
+                </p>
+            </div>
+
+        </div>
+       
+    </div>
+</section>
+<style>
+    /* ================= STRESS PREVENTION SECTION ================= */
+
+    .prevention-wrapper {
+        max-width: 900px;
+    }
+
+    .prevention-wrapper h2 {
+        font-size: 42px;
+        margin-bottom: 24px;
+    }
+
+    .prevention-wrapper h3 {
+        font-size: 24px;
+        margin: 40px 0 16px;
+    }
+
+    .prevention-wrapper p {
+        font-size: 17px;
+        color: var(--gray);
+        margin-bottom: 18px;
+        line-height: 1.8;
+    }
+
+    .prevention-box {
+        background: #ffffff;
+        border-left: 5px solid var(--primary);
+        padding: 28px 32px;
+        margin: 40px 0;
+        border-radius: 10px;
+        box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+    }
+
+    .prevention-box strong {
+        color: var(--dark);
+    }
+</style>
+<section class="section section-alt" id="prevencia">
+    <div class="container">
+        <div class="prevention-wrapper">
+
+            <h2>Prevencia a zvládanie stresu u študentov</h2>
+
+            <p>
+                Prevencia stresu predstavuje jeden z najdôležitejších faktorov
+                ochrany duševného zdravia a imunity študentov. Keďže stres
+                nie je možné zo života úplne odstrániť, kľúčové je naučiť sa
+                ho rozpoznať, pochopiť jeho príčiny a aktívne s ním pracovať.
+                Dlhodobé zanedbávanie stresových prejavov môže viesť k vážnym
+                psychickým aj fyzickým problémom.
+            </p>
+
+            <p>
+                Efektívne zvládanie stresu zahŕňa kombináciu správneho
+                time managementu, psychohygieny, realistických očakávaní
+                a podpory zo sociálneho prostredia. Študenti, ktorí si
+                osvoja tieto zručnosti, sú odolnejší voči tlaku a lepšie
+                zvládajú náročné obdobia štúdia.
+            </p>
+
+            <h3>Time management a organizácia času</h3>
+
+            <p>
+                Jednou z najčastejších príčin stresu u študentov je
+                nesprávne rozloženie času. Prokrastinácia, hromadenie
+                povinností a nepravidelný režim vedú k pocitu zahltenia
+                a straty kontroly. Efektívny time management pomáha
+                znižovať chaos a prináša pocit istoty.
+            </p>
+
+            <p>
+                Medzi základné stratégie patrí vytváranie realistických
+                denných a týždenných plánov, rozdeľovanie veľkých úloh
+                na menšie časti a stanovenie priorít. Dôležitá je aj
+                schopnosť zaradiť do rozvrhu oddych a čas pre seba,
+                ktorý je nevyhnutný pre regeneráciu.
+            </p>
+
+            <h3>Psychohygiena a starostlivosť o myseľ</h3>
+
+            <p>
+                Psychohygiena zahŕňa vedomú starostlivosť o psychické
+                zdravie. U študentov je často podceňovaná, hoci má
+                zásadný význam pre dlhodobú pohodu. Pravidelné prestávky,
+                relaxačné techniky a vyváženie štúdia s voľným časom
+                výrazne znižujú hladinu stresu.
+            </p>
+
+            <p>
+                Medzi účinné metódy psychohygieny patria dychové cvičenia,
+                meditácia, mindfulness, pobyt v prírode alebo kreatívne
+                aktivity. Aj krátke chvíle vedomej relaxácie počas dňa
+                môžu mať pozitívny vplyv na psychickú stabilitu.
+            </p>
+
+            <h3>Sociálna podpora a komunikácia</h3>
+
+            <p>
+                Sociálne vzťahy zohrávajú významnú ochrannú úlohu pri
+                zvládaní stresu. Podpora zo strany rodiny, priateľov
+                alebo spolužiakov pomáha znižovať pocit osamelosti
+                a zvyšuje schopnosť vyrovnať sa s náročnými situáciami.
+            </p>
+
+            <p>
+                Otvorená komunikácia o problémoch a emóciách je dôležitá
+                najmä v období zvýšenej záťaže. Študenti by nemali váhať
+                vyhľadať odbornú pomoc, ak stres presahuje ich zvládacie
+                schopnosti.
+            </p>
+
+            <div class="prevention-box">
+                <p>
+                    <strong>Dôležité:</strong> Prevencia stresu nie je
+                    jednorazový proces, ale dlhodobý spôsob života.
+                    Pravidelné malé zmeny v dennom režime môžu mať
+                    výrazný pozitívny vplyv na duševné zdravie aj
+                    imunitný systém študentov.
+                </p>
+            </div>
+
+        </div>
+    </div>
+</section>
+<div class="wave-divider">
+    <svg viewBox="0 0 1440 100" preserveAspectRatio="none">
+        <path fill="#ffffff" d="M0,64L1440,0L1440,100L0,100Z"></path>
+    </svg>
+</div>
+<style>
+    /* ================= CONCLUSION SECTION ================= */
+
+    .conclusion-wrapper {
+        max-width: 950px;
+    }
+
+    .conclusion-wrapper h2 {
+        font-size: 42px;
+        margin-bottom: 28px;
+    }
+
+    .conclusion-wrapper h3 {
+        font-size: 26px;
+        margin: 48px 0 18px;
+    }
+
+    .conclusion-wrapper p {
+        font-size: 17px;
+        color: var(--gray);
+        margin-bottom: 20px;
+        line-height: 1.85;
+    }
+
+    .recommendations {
+        margin-top: 40px;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 28px;
+    }
+
+    .recommendation-card {
+        background: #ffffff;
+        padding: 30px 28px;
+        border-radius: 14px;
+        box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+    }
+
+    .recommendation-card h4 {
+        font-size: 20px;
+        margin-bottom: 12px;
+    }
+
+    .recommendation-card p {
+        font-size: 15px;
+        color: var(--gray);
+        line-height: 1.7;
+    }
+
+    .final-note {
+        background: var(--accent);
+        padding: 32px 36px;
+        border-radius: 14px;
+        margin-top: 56px;
+    }
+
+    .final-note p {
+        font-size: 17px;
+        color: var(--dark);
+        line-height: 1.8;
+    }
+</style>
+<section class="section" id="mental">
+    <div class="container">
+        <div class="conclusion-wrapper">
+
+            <h2>Záver: význam prevencie stresu u študentov</h2>
+
+            <p>
+                Stres predstavuje neoddeliteľnú súčasť života študentov,
+                avšak jeho dlhodobé a nekontrolované pôsobenie môže mať
+                závažné dôsledky na duševné zdravie aj imunitný systém.
+                Ako bolo uvedené v predchádzajúcich častiach, chronický
+                stres ovplyvňuje psychickú pohodu, schopnosť koncentrácie,
+                emocionálnu stabilitu a zároveň oslabuje obranyschopnosť
+                organizmu.
+            </p>
+
+            <p>
+                Študenti sa často nachádzajú v období intenzívnych zmien,
+                vysokých nárokov a očakávaní. Kombinácia akademického tlaku,
+                sociálnych faktorov, nedostatku spánku a nevhodného
+                životného štýlu vytvára podmienky pre vznik dlhodobého
+                stresu. Preto je nevyhnutné venovať pozornosť nielen
+                riešeniu dôsledkov stresu, ale predovšetkým jeho prevencii.
+            </p>
+
+            <p>
+                Výsledky odborných štúdií aj praktických skúseností
+                poukazujú na to, že systematická starostlivosť o duševné
+                zdravie, vyvážená strava, pravidelný pohyb a kvalitný
+                spánok významne prispievajú k lepšiemu zvládaniu stresu
+                a posilneniu imunity. Prevencia by mala byť vnímaná ako
+                prirodzená súčasť každodenného života študentov.
+            </p>
+
+            <h3>Praktické odporúčania pre študentov</h3>
+
+            <div class="recommendations">
+
+                <div class="recommendation-card">
+                    <h4>Udržiavaj pravidelný režim</h4>
+                    <p>
+                        Snaž sa o pravidelný spánok, stravovanie a učenie.
+                        Stabilný denný režim pomáha telu aj mysli lepšie
+                        zvládať záťažové situácie.
+                    </p>
+                </div>
+
+                <div class="recommendation-card">
+                    <h4>Plánuj si povinnosti realisticky</h4>
+                    <p>
+                        Rozdeľ si úlohy na menšie časti a vyhýbaj sa
+                        prokrastinácii. Realistické plánovanie znižuje
+                        pocit zahltenia a stresu.
+                    </p>
+                </div>
+
+                <div class="recommendation-card">
+                    <h4>Dbaj na vyváženú stravu</h4>
+                    <p>
+                        Pravidelný príjem kvalitných potravín podporuje
+                        stabilnú hladinu energie a správne fungovanie
+                        nervového aj imunitného systému.
+                    </p>
+                </div>
+
+                <div class="recommendation-card">
+                    <h4>Zaraď pohyb do každého dňa</h4>
+                    <p>
+                        Aj krátka fyzická aktivita pomáha znižovať napätie,
+                        zlepšuje náladu a podporuje psychickú rovnováhu.
+                    </p>
+                </div>
+
+                <div class="recommendation-card">
+                    <h4>Neboj sa hovoriť o problémoch</h4>
+                    <p>
+                        Zdieľanie pocitov s blízkymi osobami alebo
+                        odborníkmi môže výrazne uľahčiť zvládanie stresu.
+                    </p>
+                </div>
+
+                <div class="recommendation-card">
+                    <h4>Dopraj si čas na oddych</h4>
+                    <p>
+                        Oddych nie je strata času, ale nevyhnutná súčasť
+                        regenerácie organizmu a prevencie vyhorenia.
+                    </p>
+                </div>
+
+            </div>
+
+            <div class="final-note">
+                <p>
+                    Na záver možno konštatovať, že starostlivosť o duševné
+                    zdravie a imunitu by mala byť prioritou každého študenta.
+                    Včasná prevencia stresu a zdravý životný štýl predstavujú
+                    investíciu do budúcnosti, ktorá sa prejaví nielen lepším
+                    akademickým výkonom, ale aj vyššou kvalitou života.
+                </p>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<section class="section section-alt" id="relax-hra">
+    <div class="container">
+        <div class="games-grid">
+<div class="game-box">
+            <h2>Relax hra – Dychový rytmus</h2>
+            <p>
+                Sleduj animáciu a dýchaj podľa pokynov.
+                Dokonči 5 cyklov pre úplné uvoľnenie.
+            </p>
+
+            <div class="breathing-circle" id="breathingCircle">
+                <span id="breathText">Stlač Štart</span>
+            </div>
+
+            <div class="game-controls">
+
+
+
+    <button class="btn btn-primary" onclick="startBreathingGame()">Štart</button>
+    <button class="btn btn-outline" onclick="resetBreathingGame()">Reset</button>
+
+</div>
+
+
+            <div class="game-stats">
+                <p>Cykly: <strong id="cycleCount">0</strong> / 5</p>
+               </div>
+           
+
+        </div>
+      <div class="game-box">
+
+    <h2>Klikacia hra – Zbav sa stresu</h2>
+    <p>
+        Klikaj na stresové myšlienky a odstráň ich.
+        Máš 30 sekúnd.
+    </p>
+
+    <div class="click-game-area" id="clickGameArea">
+        <div class="click-score">
+            Body: <strong id="clickScore">0</strong> |
+            Čas: <strong id="clickTime">30</strong>s
+        </div>
+    </div>
+
+    <div class="game-controls">
+        <button class="btn btn-primary" onclick="startClickGame()">Štart hry</button>
+        <button class="btn btn-outline" onclick="resetClickGame()">Reset</button>
+    </div>
+   <div id="clickResult" style="margin-top:20px; display:none; text-align:center; font-weight:600;"></div>
+
+</div>
+    </div>
+</section>
+<style>
+    /* ================= STRESS TEST SECTION ================= */
+
+    .test-wrapper {
+        max-width: 900px;
+    }
+
+    .test-wrapper h2 {
+        font-size: 42px;
+        margin-bottom: 20px;
+    }
+
+    .test-wrapper p {
+        font-size: 17px;
+        color: var(--gray);
+        margin-bottom: 28px;
+        line-height: 1.8;
+    }
+
+    .question {
+        background: #ffffff;
+        padding: 26px 30px;
+        border-radius: 12px;
+        margin-bottom: 20px;
+        box-shadow: 0 10px 25px rgba(15, 23, 42, 0.07);
+    }
+
+    .question h4 {
+        font-size: 17px;
+        margin-bottom: 14px;
+    }
+
+    .options {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 16px;
+    }
+
+    .options label {
+        font-size: 14px;
+        cursor: pointer;
+    }
+
+    .test-button {
+        margin-top: 32px;
+        padding: 16px 36px;
+        background-color: var(--primary);
+        color: #fff;
+        border: none;
+        border-radius: 8px;
+        font-size: 16px;
+        font-weight: 600;
+        cursor: pointer;
+    }
+
+    .test-button:hover {
+        background-color: #1d4ed8;
+    }
+
+    .result-box {
+        margin-top: 40px;
+        padding: 32px 36px;
+        border-radius: 14px;
+        display: none;
+    }
+
+   /* ================= RESULT STATES ================= */
+
+    .result-box.low,
+    .result-box.low h3,
+    .result-box.low p {
+        background-color: #dcfce7;
+        color: #166534;
+    }
+   
+    .result-box.medium,
+    .result-box.medium h3,
+    .result-box.medium p {
+        background-color: #fef9c3;
+        color: #854d0e;
+    }
+   
+    .result-box.high,
+    .result-box.high h3,
+    .result-box.high p {
+        background-color: #fee2e2;
+        color: #7f1d1d;
+    }
+
+    .result-box h3 {
+        margin-bottom: 14px;
+    }
+
+    .note {
+        font-size: 14px;
+        color: var(--gray);
+        margin-top: 18px;
+    }
+</style>
+<section class="section section-alt" id="test">
+    <div class="container">
+        <div class="test-wrapper">
+
+            <h2>Test vnímaného stresu (PSS-10)</h2>
+
+            <p>
+                Nasledujúci dotazník vychádza zo štandardizovaného
+                <strong>Perceived Stress Scale (PSS-10)</strong>,
+                ktorý bol vyvinutý Cohenom a kol. a je široko používaný
+                v psychológii a zdravotníckom výskume.
+                Test hodnotí mieru stresu za posledný mesiac.
+            </p>
+
+            <form id="stressTest">
+            
+
+                <!-- QUESTIONS -->
+                <script>
+                    const questions = [
+                        "Ako často ste boli rozrušení kvôli niečomu neočakávanému?",
+                        "Ako často ste mali pocit, že nemáte kontrolu nad dôležitými vecami?",
+                        "Ako často ste sa cítili nervózni alebo v strese?",
+                        "Ako často ste mali pocit, že veci idú podľa vašich predstáv?",
+                        "Ako často ste mali pocit, že nezvládate všetko, čo musíte urobiť?",
+                        "Ako často ste mali pocit, že dokážete kontrolovať podráždenosť?",
+                        "Ako často ste mali pocit, že máte veci pod kontrolou?",
+                        "Ako často ste mali pocit, že ťažkosti sa na vás valia?",
+                        "Ako často ste boli nahnevaní kvôli veciam, ktoré ste nemohli ovplyvniť?",
+                        "Ako často ste mali pocit, že problémy vás prevyšujú?"
+                    ];
+
+                    questions.forEach((q, i) => {
+                        document.write(`
+                            <div class="question">
+                                <h4>${i + 1}. ${q}</h4>
+                                <div class="options">
+                                    ${[0,1,2,3,4].map(v => `
+                                        <label>
+                                            <input type="radio" name="q${i}" value="${v}" required>
+                                            ${["Nikdy","Takmer nikdy","Niekedy","Pomerne často","Veľmi často"][v]}
+                                        </label>
+                                    `).join("")}
+                                </div>
+                            </div>
+                        `);
+                    });
+                </script>
+
+                <button type="button" class="test-button" onclick="evaluateTest()">
+                    Vyhodnotiť test
+                </button>
+            </form>
+
+            <div id="result" class="result-box">
+                <h3 id="resultTitle"></h3>
+                <p id="resultText"></p>
+                <p class="note">
+                    Poznámka: Tento test slúži na orientačné posúdenie stresu
+                    a nenahrádza odbornú diagnostiku.
+                </p>
+            </div>
+
+        </div>
+    </div>
+</section>
+<script>
+function evaluateTest() {
+    let score = 0;
+
+    for (let i = 0; i < 10; i++) {
+        const checked = document.querySelector(`input[name="q${i}"]:checked`);
+
+        if (!checked) {
+            alert("Prosím, odpovedz na všetky otázky testu.");
+            return;
+        }
+
+        const value = parseInt(checked.value);
+
+        if ([3,5,6].includes(i)) {
+            score += 4 - value;
+        } else {
+            score += value;
+        }
+    }
+
+    const resultBox = document.getElementById("result");
+    const title = document.getElementById("resultTitle");
+    const text = document.getElementById("resultText");
+
+    resultBox.style.display = "block";
+    resultBox.className = "result-box";
+
+    if (score <= 13) {
+        resultBox.classList.add("low");
+        title.innerText = "Nízka miera stresu";
+        text.innerText =
+            "Vaše odpovede naznačujú nízku úroveň vnímaného stresu.";
+    } else if (score <= 26) {
+        resultBox.classList.add("medium");
+        title.innerText = "Stredná miera stresu";
+        text.innerText =
+            "Vaše odpovede naznačujú strednú úroveň stresu.";
+    } else {
+        resultBox.classList.add("high");
+        title.innerText = "Vysoká miera stresu";
+        text.innerText =
+            "Vaše odpovede naznačujú vysokú úroveň stresu.";
+    }
+}
+</script>
+
+<style>
+    /* ================= HELP & LINKS SECTION ================= */
+
+    .help-wrapper {
+        max-width: 1000px;
+    }
+
+    .help-wrapper h2 {
+        font-size: 42px;
+        margin-bottom: 24px;
+    }
+
+    .help-wrapper p {
+        font-size: 17px;
+        color: var(--gray);
+        margin-bottom: 22px;
+        line-height: 1.85;
+    }
+
+    .help-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 32px;
+        margin-top: 48px;
+    }
+
+    .help-card {
+        background: #ffffff;
+        padding: 32px 30px;
+        border-radius: 14px;
+        box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+    }
+
+    .help-card h3 {
+        font-size: 22px;
+        margin-bottom: 14px;
+    }
+
+    .help-card ul {
+        list-style: none;
+        padding-left: 0;
+    }
+
+    .help-card li {
+        font-size: 15px;
+        margin-bottom: 12px;
+        color: var(--gray);
+        line-height: 1.6;
+    }
+
+    .help-card a {
+        color: var(--primary);
+        font-weight: 500;
+        word-break: break-word;
+    }
+
+    .important-note {
+        margin-top: 56px;
+        background: #fee2e2;
+        border-left: 6px solid #dc2626;
+        padding: 28px 32px;
+        border-radius: 10px;
+    }
+
+    .important-note p {
+        color: #7f1d1d;
+        font-size: 16px;
+        line-height: 1.8;
+    }
+</style>
+<section class="section section-alt" id="pomoc">
+    <div class="container">
+        <div class="help-wrapper">
+
+            <h2>Pomoc, podpora a overené zdroje informácií</h2>
+
+            <p>
+                Ak stres, úzkosť alebo psychická záťaž dlhodobo ovplyvňujú
+                každodenný život študenta, je dôležité vedieť, kde hľadať
+                pomoc a spoľahlivé informácie. Odborná podpora a kvalitné
+                zdroje môžu výrazne prispieť k lepšiemu zvládaniu náročných
+                situácií a prevencii vážnejších problémov.
+            </p>
+
+            <p>
+                Nasledujúce odkazy a inštitúcie poskytujú overené informácie,
+                odbornú pomoc a podporu v oblasti duševného zdravia,
+                zvládania stresu a psychickej pohody.
+            </p>
+
+            <div class="help-grid">
+
+                <div class="help-card">
+                    <h3>Odborná pomoc a poradenstvo 🗣️</h3>
+                    <ul>
+                        <li>
+                            <strong>IPčko – internetová poradňa</strong><br>
+                            <a href="https://ipcko.sk" target="_blank">https://ipcko.sk</a><br>
+                            Psychologická pomoc pre mladých ľudí.
+                        </li>
+                        <li>
+                            <strong>Linka dôvery Nezábudka</strong><br>
+                            <a href="https://www.dusevnezdravie.sk" target="_blank">
+                                https://www.dusevnezdravie.sk
+                            </a>
+                        </li>
+                        <li>
+                            <strong>Školský psychológ</strong><br>
+                            Dostupný na mnohých stredných a vysokých školách.
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="help-card">
+                    <h3>Vedecké a edukačné zdroje 🧪</h3>
+                    <ul>
+                        <li>
+                            <strong>WHO – duševné zdravie</strong><br>
+                            <a href="https://www.who.int/teams/mental-health-and-substance-use"
+                               target="_blank">
+                                www.who.int
+                            </a>
+                        </li>
+                        <li>
+                            <strong>National Institute of Mental Health</strong><br>
+                            <a href="https://www.nimh.nih.gov" target="_blank">
+                                www.nimh.nih.gov
+                            </a>
+                        </li>
+                        <li>
+                            <strong>Psychology Today</strong><br>
+                            <a href="https://www.psychologytoday.com" target="_blank">
+                                www.psychologytoday.com
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="help-card">
+                    <h3>Zvládanie stresu v praxi 📉</h3>
+                    <ul>
+                        <li>
+                            Mindfulness a meditácia<br>
+                            <a href="https://www.mindful.org" target="_blank">
+                                www.mindful.org
+                            </a>
+                        </li>
+                        <li>
+                            Techniky zvládania stresu<br>
+                            <a href="https://www.apa.org/topics/stress"
+                               target="_blank">
+                                American Psychological Association
+                            </a>
+                        </li>
+                        <li>
+                            Aplikácie na duševnú pohodu<br>
+                            (napr. dychové cvičenia, relaxácia)
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <div class="important-note">
+                <p>
+                    <strong>Upozornenie:</strong> Ak sa objavujú vážne príznaky
+                    stresu, úzkosti alebo depresie (napr. dlhodobá beznádej,
+                    panické ataky, myšlienky na sebapoškodenie),
+                    je nevyhnutné okamžite vyhľadať odbornú pomoc.
+                    Vyhľadanie pomoci je prejavom zodpovednosti, nie slabosti.
+                </p>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+<style>
+#nav-menu.show li {
+    opacity: 0;
+    transform: translateY(-10px);
+    animation: navFade 0.6s ease forwards;
+}
+
+#nav-menu.show li:nth-child(1) { animation-delay: 0.05s; }
+#nav-menu.show li:nth-child(2) { animation-delay: 0.1s; }
+#nav-menu.show li:nth-child(3) { animation-delay: 0.15s; }
+#nav-menu.show li:nth-child(4) { animation-delay: 0.2s; }
+#nav-menu.show li:nth-child(5) { animation-delay: 0.25s; }
+#nav-menu.show li:nth-child(6) { animation-delay: 0.3s; }
+#nav-menu.show li:nth-child(7) { animation-delay: 0.35s; }
+#nav-menu.show li:nth-child(8) { animation-delay: 0.4s; }
+#nav-menu.show li:nth-child(9) { animation-delay: 0.45s; }
+#nav-menu.show li:nth-child(10) { animation-delay: 0.5s; }
+
+@keyframes navFade {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+/* ================= DARK MODE – REMOVE OVERLAY FROM TEST SECTION ================= */
+
+body.dark #test.section::before,
+body.dark #test.section-alt::before {
+    display: none;
+}
+
+    /* ================= FOOTER ================= */
+
+    footer {
+        background-color: #0f172a;
+        color: #e5e7eb;
+        padding: 64px 0 40px;
+    }
+
+    .footer-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        gap: 40px;
+        margin-bottom: 40px;
+    }
+
+    .footer-column h4 {
+        font-size: 18px;
+        margin-bottom: 16px;
+        color: #ffffff;
+    }
+
+    .footer-column p,
+    .footer-column li {
+        font-size: 14px;
+        color: #cbd5f5;
+        line-height: 1.7;
+    }
+
+    .footer-column ul {
+        list-style: none;
+        padding-left: 0;
+    }
+
+    .footer-column li {
+        margin-bottom: 10px;
+    }
+
+    .footer-bottom {
+        border-top: 1px solid rgba(255,255,255,0.1);
+        padding-top: 24px;
+        text-align: center;
+        font-size: 13px;
+        color: #94a3b8;
+    }
+/* ================= AI ASSISTANT ================= */
+
+.ai-btn {
+    margin-left: 24px;
+    padding: 8px 14px;
+    border-radius: 6px;
+    background: var(--primary);
+    color: #ffffff;
+    border: none;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+}
+.ai-choices {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 12px 16px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.ai-choices button {
+    background: #0f172a;
+    color: #e5e7eb;
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 16px;
+    padding: 6px 12px;
+    font-size: 12px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.ai-choices button:hover {
+    background: var(--primary);
+    color: #ffffff;
+}
+
+#ai-assistant {
+    position: fixed;
+    top: 90px;
+    right: 24px;
+    width: 320px;
+    height: 420px;
+    background: #020617;
+    border-radius: 14px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.6);
+    display: none;
+    flex-direction: column;
+    z-index: 20000;
+}
+@media (min-width: 901px) {
+    #ai-assistant {
+        left: 24px;
+        right: auto;
+    }
+}
+@media (max-width: 900px) {
+    #ai-assistant {
+        left: 0;
+        right: 0;
+        width: 100%;
+        height: 60%;
+        bottom: 0;
+        top: auto;
+        border-radius: 20px 20px 0 0;
+    }
+}
+.ai-header {
+    background: #0f172a;
+    color: #fff;
+    padding: 14px;
+    display: flex;
+    justify-content: center;
+}
+
+.ai-messages {
+    flex: 1;
+    padding: 16px;
+    overflow-y: auto;
+}
+
+.ai-message {
+    margin-bottom: 14px;
+    font-size: 14px;
+}
+
+.ai-bot {
+    color: #e5e7eb;
+}
+
+.ai-user {
+    text-align: right;
+    color: #60a5fa;
+}
+
+.ai-input {
+    display: flex;
+    border-top: 1px solid rgba(255,255,255,0.1);
+}
+
+.ai-input input {
+    flex: 1;
+    padding: 12px;
+    background: #020617;
+    border: none;
+    color: #fff;
+}
+
+.ai-input button {
+    width: 48px;
+    border: none;
+    background: var(--primary);
+    cursor: pointer;
+}
+@media (max-width: 900px) {
+   .ai-btn {
+      display: inline-block;
+      margin-left: 12px;
+   }
+}
+
+/* ===== DARK MODE — VIDITEĽNÝ TEXT V BUBLINÁCH ===== */
+
+/* DARK MODE – sekcie */
+body.dark .section,
+body.dark .section-alt {
+    background-color: #0f172a;
+    color: #f1f5f9;
+}
+
+.stress-card,
+.regeneration-card,
+.recommendation-card,
+.meal-card,
+.training-day,
+.help-card {
+    background: rgba(255,255,255,0.75);
+    backdrop-filter: blur(14px);
+    border: 1px solid rgba(255,255,255,0.4);
+    box-shadow:
+        0 10px 30px rgba(0,0,0,0.08),
+        inset 0 1px 0 rgba(255,255,255,0.6);
+    transition: all 0.4s cubic-bezier(.25,.8,.25,1);
+}
+
+.stress-card:hover,
+.regeneration-card:hover,
+.recommendation-card:hover,
+.meal-card:hover,
+.training-day:hover,
+.help-card:hover {
+    transform: translateY(-12px) scale(1.03);
+    box-shadow:
+        0 25px 60px rgba(0,0,0,0.15);
+}
+
+
+body.dark .stress-card p,
+body.dark .regeneration-card p,
+body.dark .recommendation-card p,
+body.dark .meal-card p,
+body.dark .training-day p,
+body.dark .help-card p,
+body.dark .prevention-box p,
+body.dark .important-note p,
+body.dark .final-note p,
+body.dark .stress-card li,
+body.dark .training-day li,
+body.dark .meal span {
+    color: #334155 !important; /* mierne tmavšia šedá */
+}
+
+body.dark .stress-card h3,
+body.dark .regeneration-card h3,
+body.dark .recommendation-card h4,
+body.dark .meal-card h3,
+body.dark .training-day h3,
+body.dark .help-card h3 {
+    color: #0f172a !important; /* veľmi dobre viditeľné nadpisy */
+}
+/* ================= DARK MODE – FIX PRE TEST A HELP ================= */
+
+body.dark .question,
+body.dark .question h4,
+body.dark .options label {
+    color: #0f172a !important;
+}
+
+/* text pod nadpisom testu – SVETLÝ */
+body.dark #test .test-wrapper > p {
+    color: #e5e7eb !important;
+}
+
+
+body.dark .question {
+    background: #ffffff;
+}
+
+body.dark .options label {
+    color: #334155 !important;
+}
+
+body.dark .help-card,
+body.dark .help-card p,
+body.dark .help-card li {
+    color: #0f172a !important;
+}
+
+body.dark .help-card a {
+    color: #2563eb !important;
+}
+
+/* ================= DARK MODE – FIX PRE TIP BOX ================= */
+
+body.dark .training-tip,
+body.dark .final-note {
+    background: #ffffff;
+}
+
+body.dark .training-tip p,
+body.dark .final-note p {
+    color: #0f172a !important;
+}
+
+/* ================= NAVIGATION – VISUAL UPGRADE ================= */
+
+/* položky menu */
+.nav ul li a {
+    position: relative;
+    padding: 10px 8px;
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 0.4px;
+
+    color: #e5e7eb;
+    transition: all 0.25s ease;
+}
+
+/* hover efekt – jemná linka */
+.nav ul li a::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: -6px;
+    width: 0%;
+    height: 2px;
+    background: linear-gradient(
+        90deg,
+        #2563eb,
+        #38bdf8
+    );
+    transform: translateX(-50%);
+    transition: width 0.3s ease;
+}
+
+/* hover stav */
+.nav ul li a:hover {
+    color: #ffffff;
+}
+
+.nav ul li a:hover::after {
+    width: 60%;
+}
+
+/* aktívna sekcia (ak pridáš class="active") */
+.nav ul li a.active {
+    color: #ffffff;
+}
+
+.nav ul li a.active::after {
+    width: 100%;
+}
+.wave-divider {
+    line-height: 0;
+}
+
+.wave-divider svg {
+    display: block;
+    width: 100%;
+    height: 80px;
+}
+/* ================= AI BUTTON – BETTER LOOK ================= */
+
+.ai-btn {
+    background: linear-gradient(
+        135deg,
+        #2563eb,
+        #38bdf8
+    );
+    padding: 10px 16px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    box-shadow: 0 6px 18px rgba(37,99,235,0.35);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.ai-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 24px rgba(37,99,235,0.45);
+}
+/* ================= SECTION SIDE IMAGE ================= */
+
+.section-with-image {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+}
+
+
+.section-image img {
+    max-width: 100%;
+    height: auto;
+    opacity: 0.9;
+    pointer-events: none;
+}
+
+/* DARK MODE – jemnejší obrázok */
+body.dark .section-image img {
+    opacity: 0.75;
+}
+
+/* MOBILE */
+@media (max-width: 900px) {
+    .section-with-image {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    .section-image {
+        order: -1; /* obrázok hore */
+        text-align: center;
+    }
+
+    .section-image img {
+        max-width: 320px;
+    }
+}
+/* ===== SCROLL PROGRESS BAR ===== */
+#scrollProgress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 4px;
+    width: 0%;
+    background: linear-gradient(90deg, #2563eb, #38bdf8);
+    z-index: 999999;
+}
+/* ================= FLOATING SYMBOL PATTERNS ================= */
+
+.section::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,\
+<svg width='200' height='200' viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'>\
+<g fill='none' stroke='%232563eb' stroke-width='1' opacity='0.18'>\
+<circle cx='40' cy='40' r='20'/>\
+<rect x='120' y='30' width='30' height='30'/>\
+<path d='M60 140 L90 170 L120 140'/>\
+<line x1='150' y1='120' x2='170' y2='160'/>\
+</g>\
+</svg>");
+    background-size: 200px 200px;
+    animation: floatPattern 60s linear infinite;
+    pointer-events: none;
+    z-index: 0;
+}
+
+@keyframes floatPattern {
+    0% { background-position: 0 0; }
+    100% { background-position: 400px 400px; }
+}
+/* ================= SIDE ORNAMENTS ================= */
+
+.section {
+    position: relative;
+    overflow: hidden;
+}
+
+/* všeobecný ornament */
+.section::after {
+    content: "";
+    position: absolute;
+    width: 500px;
+    height: 500px;
+    opacity: 0.12;
+    pointer-events: none;
+    z-index: 0;
+    filter: blur(80px);
+    border-radius: 50%;
+}
+
+.section > * {
+    position: relative;
+    z-index: 1;
+}
+
+/* DARK MODE – silnejší kontrast */
+body.dark .section::after {
+    opacity: 0.12;
+}
+
+#stres::after {
+    top: 5%;
+    left: -250px;
+    background: radial-gradient(circle at center, #2563eb 20%, transparent 70%);
+}
+#stres::before {
+    background-image: url("data:image/svg+xml,\
+<svg width='200' height='200' xmlns='http://www.w3.org/2000/svg'>\
+<g fill='none' stroke='%232563eb' stroke-width='2' opacity='0.18'>\
+<path d='M50 100 Q100 40 150 100 T250 100'/>\
+<circle cx='100' cy='100' r='30'/>\
+</g>\
+</svg>");
+}
+#dusevne-zdravie::after {
+    bottom: 5%;
+    right: -250px;
+    background: radial-gradient(circle at center, #38bdf8 20%, transparent 70%);
+}
+
+#zivotny-styl::after {
+    top: 15%;
+    right: -280px;
+    background: radial-gradient(circle at center, #16a34a 20%, transparent 70%);
+}
+#zivotny-styl::before {
+    background-image: url("data:image/svg+xml,\
+<svg width='200' height='200' xmlns='http://www.w3.org/2000/svg'>\
+<g fill='none' stroke='%2316a34a' stroke-width='1' opacity='0.18'>\
+<path d='M100 40 Q140 100 100 160 Q60 100 100 40'/>\
+</g>\
+</svg>");
+}
+#regeneracia::after {
+    bottom: 20%;
+    left: -280px;
+    background: radial-gradient(circle at center, #6366f1 20%, transparent 70%);
+}
+#regeneracia::before {
+    background-image: url("data:image/svg+xml,\
+<svg width='200' height='200' xmlns='http://www.w3.org/2000/svg'>\
+<g fill='none' stroke='%236366f1' stroke-width='1' opacity='0.18'>\
+<path d='M80 100 A40 40 0 1 1 120 100'/>\
+<path d='M40 150 Q100 120 160 150'/>\
+</g>\
+</svg>");
+}
+#pohyb::after {
+    top: 30%;
+    right: -300px;
+    background: radial-gradient(circle at center, #f59e0b 20%, transparent 70%);
+}
+#pohyb::before {
+    background-image: url("data:image/svg+xml,\
+<svg width='200' height='200' xmlns='http://www.w3.org/2000/svg'>\
+<g stroke='%23f59e0b' stroke-width='1' opacity='0.18'>\
+<line x1='0' y1='0' x2='200' y2='200'/>\
+<line x1='50' y1='0' x2='200' y2='150'/>\
+</g>\
+</svg>");
+}
+#prevencia::after {
+    bottom: 25%;
+    left: -300px;
+    background: radial-gradient(circle at center, #14b8a6 20%, transparent 70%);
+}
+#mental::after {
+    top: 20%;
+    right: -260px;
+    background: radial-gradient(circle at center, #8b5cf6 20%, transparent 70%);
+}
+#test::after {
+    bottom: 15%;
+    left: -300px;
+    background: radial-gradient(circle at center, #ef4444 20%, transparent 70%);
+}
+#pomoc::after {
+    top: 20%;
+    right: -260px;
+    background: radial-gradient(circle at center, #0ea5e9 20%, transparent 70%);
+}
+
+/* ================= BACKGROUND WORD ================= */
+
+.bg-word {
+    position: absolute;
+    top: 40px;
+    right: 60px;
+    font-size: 120px;
+    font-weight: 700;
+    color: rgba(37,99,235,0.08);
+    pointer-events: none;
+    user-select: none;
+    z-index: 0;
+}
+
+body.dark .bg-word {
+    color: rgba(255,255,255,0.04);
+}
+
+/* ================= RELAX GAME ================= */
+
+.game-wrapper {
+    max-width: 600px;
+}
+
+.breathing-circle {
+    width: 220px;
+    height: 220px;
+    margin: 40px auto;
+    border-radius: 50%;
+    background: radial-gradient(circle, #38bdf8, #2563eb);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-weight: 600;
+    font-size: 18px;
+    transition: transform 4s cubic-bezier(.4,0,.2,1);
+    box-shadow: 0 20px 60px rgba(37,99,235,0.4);
+}
+
+.breathing-circle.expand {
+    transform: scale(1.4);
+}
+
+.game-controls {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    margin-top: 20px;
+}
+
+.game-stats {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 16px;
+}
+/* ================= TWO GAMES GRID ================= */
+
+.games-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+}
+
+.game-box {
+    max-width: 600px;
+}
+
+@media (max-width: 1000px) {
+    .games-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* CLICK GAME */
+
+.click-game-area {
+    position: relative;
+    height: 300px;
+    background: linear-gradient(135deg, #0f172a, #1e3a8a);
+    border-radius: 16px;
+    overflow: hidden;
+    margin-top: 30px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+}
+
+.click-score {
+    position: absolute;
+    top: 12px;
+    left: 16px;
+    color: #ffffff;
+    font-size: 14px;
+    z-index: 10;
+}
+
+.bubble {
+    position: absolute;
+    padding: 10px 16px;
+    font-size: 13px;
+    border-radius: 20px;
+    cursor: pointer;
+    animation: floatUp 6s linear forwards;
+    transition: transform 0.2s ease;
+    font-weight: 600;
+}
+
+.bubble:hover {
+    transform: scale(1.15);
+}
+
+/* DOBRÉ – odstrániš stres */
+.bubble.good {
+    background: #ef4444;
+    color: #fff;
+}
+
+/* ZLÉ – klikol si na pozitívnu vec */
+.bubble.bad {
+    background: #22c55e;
+    color: #fff;
+}
+
+/* BOMBA */
+.bubble.bomb {
+    background: #111827;
+    color: #fff;
+    border: 2px solid #facc15;
+    box-shadow: 0 0 15px #facc15;
+}
+
+@keyframes floatUp {
+    from { transform: translateY(40px); opacity: 1; }
+    to { transform: translateY(-260px); opacity: 0; }
+}
+</style>
+</main>
+
+<footer>
+    <div class="container">
+
+        <div class="footer-grid">
+
+            <div class="footer-column">
+                <h4>O projekte</h4>
+                <p>
+                    Táto webová stránka bola vytvorená ako edukačný projekt
+                    zameraný na vplyv stresu na duševné zdravie a imunitu
+                    študentov. Cieľom je zvýšiť povedomie o význame prevencie,
+                    zdravého životného štýlu a včasnej pomoci.
+                </p>
+            </div>
+
+            <div class="footer-column">
+                <h4>Témy stránky</h4>
+                <ul>
+                    <li>Stres u študentov</li>
+                    <li>Duševné zdravie</li>
+                    <li>Imunitný systém</li>
+                    <li>Zdravý životný štýl</li>
+                    <li>Prevencia a pomoc</li>
+                </ul>
+            </div>
+
+            <div class="footer-column">
+                <h4>Dôležité upozornenie</h4>
+                <p>
+                    Informácie uvedené na tejto stránke majú edukačný charakter
+                    a nenahrádzajú odbornú zdravotnú alebo psychologickú
+                    diagnostiku. V prípade vážnych ťažkostí vyhľadajte
+                    odbornú pomoc.
+                </p>
+            </div>
+
+        </div>
+
+        <div class="footer-bottom">
+            © 2026 | Vplyv stresu na duševné zdravie a imunitu študentov |
+            Školský edukačný projekt 3.A | GOA32 | Webstránku vytvorili Adam Duč a Samuel Jacko
+        </div>
+
+    </div>
+</footer>
+<script>
+    let lastTopic = null;
+   let aiTimeout;
+
+
+const presetAnswers = {
+
+stres: "Stres je fyziologická a psychologická reakcia organizmu na záťaž. Aktivuje sa tzv. stresová os (hypotalamus – hypofýza – nadobličky), čo vedie k uvoľňovaniu hormónov ako adrenalín a kortizol. Krátkodobo zvyšuje výkon a sústredenie, no dlhodobý stres môže narušiť rovnováhu organizmu a poškodzovať zdravie.",
+
+priznaky: "Príznaky stresu sa prejavujú na troch úrovniach: fyzickej (bolesti hlavy, zrýchlený pulz, napätie svalov), psychickej (úzkosť, podráždenosť, výkyvy nálad) a behaviorálnej (problémy so spánkom, zhoršená koncentrácia, prokrastinácia). Dlhodobé príznaky môžu viesť k vyčerpaniu.",
+
+dlhodoby: "Chronický stres udržiava zvýšenú hladinu kortizolu, čo oslabuje imunitný systém, zvyšuje riziko úzkostných porúch, depresie a syndrómu vyhorenia. Môže tiež negatívne ovplyvniť trávenie, kvalitu spánku a kardiovaskulárne zdravie.",
+
+riesenie: "Zvládanie stresu zahŕňa kombináciu psychohygieny, pravidelného pohybu, kvalitného spánku a efektívneho time managementu. Pomáhajú aj dychové techniky (napr. 4-4-6 dýchanie), mindfulness, obmedzenie kofeínu a realistické plánovanie úloh.",
+
+spanok: "Stres narúša produkciu melatonínu a skracuje hlboké fázy spánku. Nedostatok spánku následne zvyšuje hladinu kortizolu, čo vytvára začarovaný kruh. Odporúča sa pravidelný režim, obmedzenie obrazoviek večer a aspoň 7–9 hodín spánku denne.",
+
+imunita: "Dlhodobý stres potláča činnosť bielych krviniek a znižuje schopnosť tela bojovať proti infekciám. Zvýšený kortizol oslabuje zápalovú odpoveď organizmu, čo môže viesť k častejším ochoreniam a pomalšiemu hojeniu.",
+
+strava: "Vyvážená strava bohatá na vitamíny skupiny B, vitamín C, horčík a omega-3 mastné kyseliny podporuje nervový systém. Nadmerný cukor a kofeín môžu zvyšovať výkyvy energie a nervozitu. Pravidelné jedlá stabilizujú hladinu cukru v krvi a znižujú stresové reakcie.",
+
+studenti: "Študenti čelia akademickému tlaku, časovej tiesni, skúškam a očakávaniam okolia. Kombinácia nedostatku spánku, nepravidelného režimu a vysokých nárokov zvyšuje riziko chronického stresu a psychického vyčerpania.",
+
+prevencia: "Prevencia stresu spočíva v pravidelnom režime, realistickom plánovaní, dostatočnej regenerácii a podpore sociálnych vzťahov. Dôležité je včas rozpoznať varovné signály a reagovať skôr, než dôjde k vyčerpaniu.",
+
+pomoc: "Ak stres presahuje bežnú mieru a ovplyvňuje každodenné fungovanie, je vhodné obrátiť sa na psychológa, školského poradcu alebo linku dôvery. Odborná pomoc pomáha naučiť sa efektívne stratégie zvládania a predchádzať vážnejším problémom."
+
+};
+
+function askPreset(key) {
+
+    const messages = document.getElementById("aiMessages");
+
+    clearTimeout(aiTimeout);
+
+    messages.innerHTML += `
+        <div class="ai-message ai-user">
+            ${document.querySelector(`button[onclick="askPreset('${key}')"]`).innerText}
+        </div>
+    `;
+
+    aiTimeout = setTimeout(() => {
+        messages.innerHTML += `
+            <div class="ai-message ai-bot">
+                ${presetAnswers[key]}
+            </div>
+        `;
+        messages.scrollTop = messages.scrollHeight;
+    }, 400);
+}
+
+
+    function toggleAI() {
+        const ai = document.getElementById("ai-assistant");
+        ai.style.display = ai.style.display === "flex" ? "none" : "flex";
+    }
+
+    function sendAI() {
+        const input = document.getElementById("aiInput");
+        const text = input.value.trim();
+        if (!text) return;
+
+        const messages = document.getElementById("aiMessages");
+
+        messages.innerHTML += `<div class="ai-message ai-user">${text}</div>`;
+        input.value = "";
+
+        clearTimeout(aiTimeout);
+
+aiTimeout = setTimeout(() => {
+            const response = generateResponse(text);
+            messages.innerHTML += `<div class="ai-message ai-bot">${response}</div>`;
+            messages.scrollTop = messages.scrollHeight;
+        }, 500);
+    }
+
+function generateResponse(text) {
+    const lower = text.toLowerCase();
+
+    for (const key in presetAnswers) {
+        if (lower.includes(key)) {
+            lastTopic = key;
+            return presetAnswers[key];
+        }
+    }
+
+    if (lower.includes("stres")) return presetAnswers.stres;
+    if (lower.includes("spánok") || lower.includes("spanok")) return presetAnswers.spanok;
+    if (lower.includes("imun")) return presetAnswers.imunita;
+    if (lower.includes("strav")) return presetAnswers.strava;
+    if (lower.includes("pomoc") || lower.includes("psychológ")) return presetAnswers.pomoc;
+
+    return "Skús si vybrať jednu z ponúkaných otázok vyššie alebo sa spýtaj na stres, spánok, imunitu či pomoc.";
+}
+
+
+    function randomFrom(arr) {
+        return arr[Math.floor(Math.random() * arr.length)];
+    }
+
+    document.getElementById("aiInput").addEventListener("keypress", e => {
+        if (e.key === "Enter") sendAI();
+    });
+</script>
+
+
+<script>
+const observer = new IntersectionObserver((entries)=>{
+    entries.forEach(entry=>{
+        if(entry.isIntersecting){
+            entry.target.classList.add("fade-in-visible");
+        }
+    });
+},{
+    threshold: 0.15
+});
+
+document.querySelectorAll(".fade-in").forEach(el=>{
+    observer.observe(el);
+});
+</script>
+
+
+
+<!-- DARK / LIGHT LOGIC -->
+<script>
+const toggleBtn = document.getElementById("themeToggle");
+
+toggleBtn.addEventListener("click", () => {
+    document.body.classList.toggle("dark");
+    toggleBtn.textContent = document.body.classList.contains("dark") ? "☀️" : "🌙";
+});
+</script>
+
+<!-- BACK TO TOP BUTTON LOGIC -->
+
+<script>
+function toggleMenu() {
+    const menu = document.getElementById("nav-menu");
+    menu.classList.toggle("show");
+}
+
+function closeMenu() {
+    document.getElementById("nav-menu").classList.remove("show");
+}
+</script>
+<script>
+window.addEventListener("scroll", () => {
+    const scrollTop = window.scrollY;
+    const docHeight = document.body.scrollHeight - window.innerHeight;
+    const progress = (scrollTop / docHeight) * 100;
+    document.getElementById("scrollProgress").style.width = progress + "%";
+});
+</script>
+<script>
+const header = document.querySelector("header");
+
+window.addEventListener("scroll", () => {
+    if (window.scrollY > 50) {
+        header.style.background = "rgba(2, 6, 23, 0.95)";
+        header.style.backdropFilter = "blur(20px)";
+    } else {
+        header.style.background = "rgba(15, 23, 42, 0.75)";
+        header.style.backdropFilter = "blur(16px)";
+    }
+});
+</script>
+<script>
+const scrollBtn = document.getElementById("scrollTop");
+
+window.addEventListener("scroll", () => {
+    if (window.scrollY > 400) {
+        scrollBtn.style.display = "flex";
+    } else {
+        scrollBtn.style.display = "none";
+    }
+});
+
+scrollBtn.addEventListener("click", () => {
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+});
+const sections = document.querySelectorAll("section");
+const navLinks = document.querySelectorAll(".nav ul li a");
+
+window.addEventListener("scroll", () => {
+    let current = "";
+
+    sections.forEach(section => {
+        const sectionTop = section.offsetTop - header.offsetHeight;
+        if (window.scrollY >= sectionTop) {
+            current = section.getAttribute("id");
+        }
+    });
+
+    navLinks.forEach(link => {
+        link.classList.remove("active");
+        if (link.getAttribute("href") === "#" + current) {
+            link.classList.add("active");
+        }
+    });
+});
+</script>
+<script>
+let cycle = 0;
+let phaseIndex = 0;
+let gameRunning = false;
+let breathingTimeout;
+
+const phases = [
+    { text: "Nadýchni sa", duration: 4000, expand: true },
+    { text: "Zadrž dych", duration: 4000, expand: true },
+    { text: "Vydýchni", duration: 6000, expand: false }
+];
+
+function startBreathingGame() {
+    if (gameRunning) return;
+
+    gameRunning = true;
+    runPhase();
+}
+
+function runPhase() {
+    const circle = document.getElementById("breathingCircle");
+    const text = document.getElementById("breathText");
+    const phase = phases[phaseIndex];
+
+    text.innerText = phase.text;
+
+    if (phase.expand) {
+        circle.classList.add("expand");
+    } else {
+        circle.classList.remove("expand");
+    }
+
+    breathingTimeout = setTimeout(() => {
+        phaseIndex++;
+
+        if (phaseIndex >= phases.length) {
+            phaseIndex = 0;
+            cycle++;
+            document.getElementById("cycleCount").innerText = cycle;
+
+            if (cycle >= 5) {
+                text.innerText = "Hotovo ✔";
+                circle.classList.remove("expand");
+                gameRunning = false;
+                return;
+            }
+        }
+
+        if (gameRunning) runPhase();
+
+    }, phase.duration);
+}
+
+function resetBreathingGame() {
+    clearTimeout(breathingTimeout);
+    cycle = 0;
+    phaseIndex = 0;
+    gameRunning = false;
+
+    document.getElementById("cycleCount").innerText = "0";
+    document.getElementById("breathText").innerText = "Stlač Štart";
+    document.getElementById("breathingCircle").classList.remove("expand");
+}
+
+
+</script>
+<script>
+let clickScore = 0;
+let clickTime = 30;
+let clickInterval;
+let bubbleInterval;
+let clickRunning = false;
+
+let level = 1;
+let combo = 0;
+let spawnSpeed = 700;
+let gameMode = "normal";
+
+const goodWords = ["Skúška", "Termín", "Tlak", "Úzkosť"];
+const badWords = ["Pokoj", "Sebavedomie", "Rovnováha"];
+const bombWords = ["💣"];
+
+function startClickGame() {
+    if (clickRunning) return;
+
+    gameMode = "normal";
+
+    level = 1;
+    combo = 0;
+    clickScore = 0;
+    clickTime = 30;
+    clickRunning = true;
+
+    adjustDifficulty();
+
+    document.getElementById("clickGameArea").innerHTML =
+        `<div class="click-score">
+            Body: <strong id="clickScore">0</strong> |
+            Čas: <strong id="clickTime">30</strong>s |
+            Level: <strong id="level">1</strong> |
+            Combo: <strong id="combo">0</strong>
+        </div>`;
+
+    document.getElementById("clickResult").style.display = "none";
+
+    bubbleInterval = setInterval(createBubble, spawnSpeed);
+
+    clickInterval = setInterval(() => {
+        clickTime--;
+        document.getElementById("clickTime").innerText = clickTime;
+
+        if (clickTime > 0 && clickTime % 10 === 0) {
+            level++;
+            document.getElementById("level").innerText = level;
+            adjustDifficulty();
+        }
+
+        if (clickTime <= 0) {
+            endClickGame();
+        }
+    }, 1000);
+}
+
+function adjustDifficulty() {
+    if (gameMode === "normal") spawnSpeed = 700 - (level * 30);
+    if (gameMode === "hard") spawnSpeed = 600 - (level * 40);
+    if (gameMode === "insane") spawnSpeed = 500 - (level * 50);
+
+    if (spawnSpeed < 200) spawnSpeed = 200;
+
+    clearInterval(bubbleInterval);
+    bubbleInterval = setInterval(createBubble, spawnSpeed);
+}
+
+function createBubble() {
+   if (!clickRunning) return;
+    const currentBubbles = document.querySelectorAll(".bubble").length;
+if (currentBubbles >= 6) return;
+    const area = document.getElementById("clickGameArea");
+
+    const bubble = document.createElement("div");
+    bubble.classList.add("bubble");
+
+    const random = Math.random();
+
+    if (random < 0.6) {
+        bubble.classList.add("good");
+        bubble.innerText = goodWords[Math.floor(Math.random()*goodWords.length)];
+       bubble.onclick = () => {
+    document.getElementById("popSound").play();
+    combo++;
+    clickScore += 2 * combo;
+    updateStats();
+    bubble.remove();
+};
+    }
+    else if (random < 0.85) {
+        bubble.classList.add("bad");
+        bubble.innerText = badWords[Math.floor(Math.random()*badWords.length)];
+        bubble.onclick = () => {
+            combo = 0;
+            clickScore -= 5;
+            updateStats();
+            bubble.remove();
+        };
+    }
+    else {
+        bubble.classList.add("bomb");
+        bubble.innerText = bombWords[0];
+        bubble.onclick = () => {
+    document.getElementById("bombSound").play();
+    combo = 0;
+    clickScore -= 10;
+    updateStats();
+    bubble.remove();
+};
+    }
+
+    bubble.style.left = Math.random() * 85 + "%";
+    bubble.style.bottom = "0px";
+
+    area.appendChild(bubble);
+
+    setTimeout(() => {
+    if (bubble.parentNode) bubble.remove();
+}, 6000);
+}
+
+function updateStats() {
+    const scoreEl = document.getElementById("clickScore");
+    const comboEl = document.getElementById("combo");
+
+    if (scoreEl) scoreEl.innerText = clickScore;
+    if (comboEl) comboEl.innerText = combo;
+}
+
+function endClickGame() {
+    clearInterval(clickInterval);
+    clearInterval(bubbleInterval);
+    clickRunning = false;
+document.querySelectorAll(".bubble").forEach(b => {
+    b.onclick = null;
+});
+    const resultBox = document.getElementById("clickResult");
+    resultBox.style.display = "block";
+
+    let rank;
+
+    if (clickScore >= 100) rank = "🏆 MASTER";
+    else if (clickScore >= 60) rank = "🔥 PRO";
+    else if (clickScore >= 30) rank = "💪 GOOD";
+    else if (clickScore >= 0) rank = "⚠ BEGINNER";
+    else rank = "💀 CHAOS";
+
+    let best = localStorage.getItem("bestScore") || 0;
+    if (clickScore > best) {
+        localStorage.setItem("bestScore", clickScore);
+        best = clickScore;
+    }
+
+    resultBox.innerHTML = `
+        <div style="font-size:20px;margin-bottom:10px;">
+            ${rank}
+        </div>
+        <div>Skóre: ${clickScore}</div>
+        <div>Najlepší výsledok: ${best}</div>
+    `;
+}
+
+function resetClickGame() {
+    clearInterval(clickInterval);
+    clearInterval(bubbleInterval);
+    clickRunning = false;
+
+    clickScore = 0;
+    clickTime = 30;
+    combo = 0;
+    level = 1;
+
+    document.getElementById("clickGameArea").innerHTML =
+        `<div class="click-score">
+            Body: <strong id="clickScore">0</strong> |
+            Čas: <strong id="clickTime">30</strong>s
+        </div>`;
+
+    document.getElementById("clickResult").style.display = "none";
+}
+
+
+</script>
+<audio id="bgSound" loop></audio>
+
+<audio id="popSound" src="https://assets.mixkit.co/active_storage/sfx/2571/2571-preview.mp3"></audio>
+<audio id="bombSound" src="https://assets.mixkit.co/active_storage/sfx/2588/2588-preview.mp3"></audio>
+</body>
+</html>
